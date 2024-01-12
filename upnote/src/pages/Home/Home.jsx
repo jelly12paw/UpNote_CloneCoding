@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from '../../components/Navbar/Navbar';
+import Sidebar from '../../components/Navbar/Sidebar';
 
 export default function Home() {
     return (
@@ -11,9 +12,9 @@ export default function Home() {
             <div>
                 <Navbar />
             </div>
-            <div className='flex'>
-                <div>sidebar</div>
-                <div>outlet</div>
+            <div className='w-screen flex'>
+                <Sidebar />
+                <div className='w-full'>outlet</div>
             </div>
         </div>
     );
