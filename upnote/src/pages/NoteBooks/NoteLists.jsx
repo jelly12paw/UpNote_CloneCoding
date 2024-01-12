@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { AiOutlineMenu, AiOutlineAppstore, AiOutlineSearch, AiOutlinePlus } from "react-icons/ai";
+import { AiOutlineMenu, AiOutlineAppstore, AiOutlineSearch } from "react-icons/ai";
+import CreateNoteBtn from '../../components/Buttons/CreateNoteBtn';
 
 export default function NoteLists() {
     const [btnStates, setBtnStates] = useState('apps');
@@ -20,7 +21,7 @@ export default function NoteLists() {
                         <button className='ml-2 text-2xl'><AiOutlineSearch /></button>
                         <input type="text" placeholder='  Search' className='text-xl' />
                     </div>
-                    <div className='mr-8'><AiOutlinePlus /></div>
+                    <div className='mr-8 text-xl mt-1'><CreateNoteBtn /></div>
                 </div>
             </div>
             <div>
