@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from '../../components/Navbar/Navbar';
 import Sidebar from '../../components/Navbar/Sidebar';
+import { Outlet } from 'react-router-dom';
 
 export default function Home() {
     return (
@@ -14,7 +15,7 @@ export default function Home() {
             </div>
             <div className='w-screen flex'>
                 <Sidebar />
-                <div className='w-full'>outlet</div>
+                <Outlet />
             </div>
         </div>
     );
