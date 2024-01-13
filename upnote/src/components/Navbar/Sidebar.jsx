@@ -11,7 +11,7 @@ export default function Sidebar() {
             <li className='list-none my-6 text-lg font-semibold text-blue-700 hover:text-blue-800 cursor-pointer flex items-center'><AiOutlineRight className='text-gray-400 font-bold mr-2' />QUICK ACCESS</li>
             <li className='list-none my-6 text-lg font-semibold text-blue-700 hover:text-blue-800 cursor-pointer flex'>
                 <Link to='/lists' className='flex items-center mr-14'><AiOutlineRight className='text-gray-400 font-bold mr-2' />NOTEBOOKS</Link>
-                <CreateNoteBtn className='ml-14 mr-2 mt-1' />
+                <CreateNoteBtn className='ml-14 mr-2 mt-1' btnLocation='sidenote' />
             </li>
             <li className='list-none my-6 text-lg font-semibold text-blue-700 hover:text-blue-800 cursor-pointer flex items-center'><AiOutlineRight className='text-gray-400 font-bold mr-2' />TAGS</li>
             <li className='list-none my-6 ml-7 text-lg font-semibold text-blue-700 hover:text-blue-800 cursor-pointer'>TEMPLATES</li>
