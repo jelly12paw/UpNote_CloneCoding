@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import moment from 'moment';
 
 export default function CreateNoteForm({ handleOpen, onAdd }) {
     const [title, setTitle] = useState('');
     const handleChange = (e) => setTitle(e.target.value); 
     
+    const date = moment().format("YYYY-MM-DD HH:mm:ss");
     const handleSubmit = () => {
         if (title.trim().length === 0) {
             return ;
         }
-        onAdd({ id: uuidv4(), title: title });
+        onAdd({ id: uuidv4(), title: title, createdAt: date });
         setTitle('');
     };
 

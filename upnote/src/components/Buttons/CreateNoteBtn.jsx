@@ -6,7 +6,14 @@ export default function CreateNoteBtn({ btnLocation }) {
     const [opened, setOpened] = useState(false);
     const handleOpen = () => setOpened(prev => !prev);
 
-    const [notes, setNotes] = useState([]);
+    const [notes, setNotes] = useState(() => {
+        if (typeof window !== "undefined") {
+            const stored = localStorage.getItem(btnLocation);
+            if (stored !== null) {
+                return JSON.parse(stored);
+            } else return [];
+        }
+    });
     const handleAdd = (note) => {setNotes([...notes, note])};
     
     useEffect(() => {
