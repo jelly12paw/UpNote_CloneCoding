@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import { AiOutlineMenu, AiOutlineAppstore, AiOutlineSearch } from "react-icons/ai";
 import CreateNoteBtn from '../../components/Buttons/CreateNoteBtn';
+import Notes from '../../components/Notes/Notes';
 
-export default function NoteLists({ notebooks }) {
+export default function NoteLists() {
     const [btnStates, setBtnStates] = useState('apps');
     const handleClick = (btn) => setBtnStates(btn);
     
-    // const [notebooks, setNotebooks] = useState(readNotesFromLC());
-    // console.log(notebooks);
-
     return (
         <div className='w-screen'>
             <div className='border border-gray-200 bg-gray-100 w-full flex justify-between items-center py-1 text-lg'>
@@ -28,20 +26,8 @@ export default function NoteLists({ notebooks }) {
                 </div>
             </div>
             <div>
-                {notebooks.map((item) => (
-                    <p key={item.id}>{item.title}</p>
-                ))}
+                <Notes />
             </div>
         </div>
     );
 }
-
-// function readNotesFromLC() {
-//     const listnotes = localStorage.getItem('listsnote');
-//     const sidenotes = localStorage.getItem('sidenote');
-
-//     const note1 = JSON.parse(listnotes);
-//     const note2 = JSON.parse(sidenotes);
-
-//     return [...note1, ...note2].sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
-// }
