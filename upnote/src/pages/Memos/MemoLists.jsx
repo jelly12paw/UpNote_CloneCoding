@@ -3,9 +3,9 @@ import Editor from '../../api/Lexical/Editor';
 
 export default function MemoLists() {
     return (
-        <div className='w-screen flex items-center'>
-            <div className='w-[20rem]'>list</div>
-            <div className='w-full bg-[#eee]'><Editor /></div>
+        <div className='w-full h-full flex justify-center'>
+            <div className='w-[35%]'>list</div>
+            <div className='w-[65%] bg-[#eee]'><Editor /></div>
         </div>
     );
 }

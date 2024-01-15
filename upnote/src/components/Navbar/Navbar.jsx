@@ -5,8 +5,8 @@ import { TbBoxMultiple } from "react-icons/tb";
 
 export default function Navbar() {
     return (
-        <nav className='w-screen p-4'>
-            <div className='flex justify-between px-4'>
+        <nav className='p-4'>
+            <div className='flex justify-between'>
                 <div className='text-2xl flex items-center'>
                     <AiOutlineMenu className='mr-6' />
                     <AiOutlineLeft className='mr-4' />
