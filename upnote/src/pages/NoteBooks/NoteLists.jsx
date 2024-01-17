@@ -7,10 +7,18 @@ export default function NoteLists() {
     const [btnStates, setBtnStates] = useState('apps');
     const handleClick = (btn) => setBtnStates(btn);
     
+    const [noteLength, setNoteLength] = useState(() => {
+        if (typeof window !== "undefined") {
+            const length = localStorage.getItem('combined');
+            if (length !== null) {
+                return JSON.parse(length).length;
+            } else return 0;
+        }
+});
     return (
         <div className='w-screen'>
             <div className='border border-gray-200 bg-gray-100 w-full flex justify-between items-center py-1 text-lg'>
-                <p className='ml-8'>Notebooks <span className='text-gray-400'>( 2 )</span></p>
+                <p className='ml-8'>Notebooks <span className='text-gray-400'>( {noteLength ? noteLength : 0} )</span></p>
                 <div className='flex items-center'>
                     <div className='border border-gray-200 bg-white flex items-center text-xl rounded'>
                         <button onClick={() => handleClick('apps')} 

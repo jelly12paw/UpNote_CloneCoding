@@ -65,12 +65,20 @@ export default function MemoLists() {
         localStorage.setItem(noteTitle, JSON.stringify(stored));
     }, [stored, noteTitle]);
     
-    // console.log(stored);
+    const [noteLength, setNoteLength] = useState(() => {
+            if (typeof window !== "undefined") {
+                const length = localStorage.getItem(noteTitle);
+                if (length !== null) {
+                    return JSON.parse(length).length;
+                } else return 0;
+            }
+    });
+
     return (
         <div className='w-full h-full flex justify-center'>
             <div className={isOpen ? 'w-[35%]' : 'w-full'}>
                 <div className='border border-gray-200 bg-gray-100 border-r-0 w-full flex justify-between items-center py-[0.65rem] text-lg'>
-                    <p className='ml-8'>{noteTitle} <span className='text-gray-400 ml-4'>( 2 )</span></p>
+                    <p className='ml-8'>{noteTitle} <span className='text-gray-400 ml-4'>( {noteLength ? noteLength : 0} )</span></p>
                     <button onClick={handleOpen} className='mr-8 text-2xl'>{isOpen ? <IoExitOutline /> : <AiOutlinePlus />}</button>
                 </div>
                 <MemoMenu />
