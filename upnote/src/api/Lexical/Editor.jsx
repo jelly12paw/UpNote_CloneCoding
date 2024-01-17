@@ -18,6 +18,11 @@ import ActionsPlugin from "./plugins/ActionsPlugin";
 import CodeHighlightPlugin from "./plugins/CodeHighlightPlugin";
 import './lexical_styles.css';
 
+import { useEffect, useState } from 'react';
+import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
+import { v4 as uuidv4 } from 'uuid';
+import moment from 'moment';
+
 function Placeholder() {
   return (
     <div className="editor-placeholder">
@@ -26,7 +31,17 @@ function Placeholder() {
   );
 }
 
-const editorConfig = {
+function TextContentListener({ onChange }) {
+    const [editor] = useLexicalComposerContext();
+
+    useEffect(() => {
+        return editor.registerTextContentListener((text) => {
+            onChange(text);
+        });
+    }, [editor, onChange]);
+}
+
+const editorConfig = {  
   theme: ExampleTheme,
   // Handling of errors during update
   onError(error) {
@@ -48,7 +63,35 @@ const editorConfig = {
   ]
 };
 
-export default function Editor() {
+export default function Editor({ data }) {
+  const date = moment().format("YYYY-MM-DD HH:mm:ss");
+  const [textValue, setTextValue] = useState("");
+
+  function onChange(text) {
+    if (text.trim() != "") { 
+        setTextValue(text);
+    } else setTextValue(text.trim());
+    // data({id: uuidv4(), createdAt: date, data: textValue});
+  };
+//   console.log(textValue);
+
+  const [editorState, setEditorState] = useState();
+  
+  const OnChangePlugin = ({ onChanges }) => {
+    const [editor] = useLexicalComposerContext();
+    useEffect(() => {
+      return editor.registerUpdateListener(({ editorState }) => {
+        onChanges(editorState);
+      });
+    }, [editor, onChanges]);
+  };
+  
+  function onChanges(editorState) {
+    const editorStateJSON = editorState.toJSON();
+    setEditorState(editorStateJSON);
+    data({id: uuidv4(), createdAt: date, data: editorStateJSON});
+  };
+
   return (
     <LexicalComposer initialConfig={editorConfig}>
       <div className="editor-container">
@@ -66,6 +109,8 @@ export default function Editor() {
         </div>
         <ActionsPlugin />
       </div>
+      <TextContentListener onChange={onChange} />
+      <OnChangePlugin onChanges={onChanges} />
     </LexicalComposer>
   );
 }

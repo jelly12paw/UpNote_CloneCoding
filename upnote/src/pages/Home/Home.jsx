@@ -11,7 +11,7 @@ export default function Home() {
                 <p className='ml-2'>UpNote</p>
             </div>
             <Navbar />
-            <div className='w-screen h-screen flex'>
+            <div className='w-screen h-[89vh] flex'>
                 <Sidebar />
                 <Outlet />
             </div>
