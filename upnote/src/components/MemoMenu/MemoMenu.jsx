@@ -7,9 +7,14 @@ export default function MemoMenu() {
         const data = localStorage.getItem(noteTitle);
         return data ? JSON.parse(data) : [];
     });
+
+    const handleDelete = (id) => {
+        const deletedMemos = memos.filter(item => item.id !== id);
+        localStorage.setItem(noteTitle, JSON.stringify(deletedMemos));
+            
+        setMemos(deletedMemos);
+    };
     
-    // const LocalNoteData = JSON.parse(localStorage.getItem(noteTitle));
-    // memos.map((item) => item.data.root.children[1] ? item.data.root.children[1].children[0] ? console.log(item.data.root.children[1].children[0].text) : '' : '');
     return (
         <div className='w-full h-full p-4 overflow-y-auto'>
             {memos.map((item) => (
@@ -24,7 +29,7 @@ export default function MemoMenu() {
                         <p className='text-gray-300'>{item.createdAt}</p>
                     </div>
                     <div className='mr-10'>
-                        <button><FaTrashAlt /></button>
+                        <button onClick={() => handleDelete(item.id)}><FaTrashAlt /></button>
                     </div>
                 </div>
             ))}
