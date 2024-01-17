@@ -4,7 +4,10 @@ import CreateNoteForm from '../Forms/CreateNoteForm';
 
 export default function CreateNoteBtn({ btnLocation }) {
     const [opened, setOpened] = useState(false);
-    const handleOpen = () => setOpened(prev => !prev);
+    const handleOpen = () => {
+        setOpened(prev => !prev);
+        if (opened === true) window.location.reload();
+    };
 
     const [notebooks, setNotebooks] = useState([]);
     const [notes, setNotes] = useState(() => {

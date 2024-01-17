@@ -9,8 +9,6 @@ export default function MemoLists() {
     
     const [datas, setDatas] = useState();
     const handleData = (data) => setDatas(data);
-    // datas.root.children.map((item) => console.log(item.children.map((i) => i.text)));
-    // console.log(datas);
     
     const [memos, setMemos] = useState([]);
     const [memoLists, setMemoLists] = useState([]);
@@ -29,9 +27,9 @@ export default function MemoLists() {
             setDatas(null);
             setStored(prevStored => [...prevStored, datas]);
             setMemoLists(stored);
-            // localStorage.setItem(noteTitle, JSON.stringify(stored));
         }
         setIsOpen(prev => !prev);
+        if (isOpen === true) window.location.reload();
     };
 
     useEffect(() => {
